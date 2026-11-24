@@ -1,0 +1,16 @@
+# ROS 2 / colcon workspace artifacts
+build/
+install/
+log/
+.colcon_cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Editors / IDEs
+.vscode/
