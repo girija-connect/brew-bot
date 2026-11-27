@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="cafe_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="wheels">
+    <link name="left_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.8"/>
+        <inertia ixx="0.00136368" ixy="0" ixz="0"
+                 iyy="0.00262133" iyz="0" izz="0.00136368"/>
+      </inertial>
+
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/left_wheel_link.dae"/></geometry>
+      </visual>
+
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/left_wheel_tyre.dae"/></geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+    </link>
+    <joint name="left_wheel_joint" type="continuous">
+      <origin xyz="0 ${wheel_sep/2} 0" rpy="0 0 0"/>
+      <parent link="chassis_link"/>
+      <child link="left_wheel_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="100" velocity="20.94"/>
+    </joint>
+    <gazebo reference="left_wheel_link">
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+    </gazebo>
+
+    <link name="right_wheel_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.8"/>
+        <inertia ixx="0.00136368" ixy="0" ixz="0"
+                 iyy="0.00262133" iyz="0" izz="0.00136368"/>
+      </inertial>
+
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/right_wheel_link.dae"/></geometry>
+      </visual>
+
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/right_wheel_tyre.dae"/></geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+    </link>
+    <joint name="right_wheel_joint" type="continuous">
+      <origin xyz="0 ${-wheel_sep/2} 0" rpy="0 0 0"/>
+      <parent link="chassis_link"/>
+      <child link="right_wheel_link"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="100" velocity="20.94"/>
+    </joint>
+    <gazebo reference="right_wheel_link">
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

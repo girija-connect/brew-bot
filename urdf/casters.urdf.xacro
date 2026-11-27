@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="cafe_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ball casters, inside the base footprint; frictionless so the diff-drive can turn -->
+  <xacro:macro name="casters">
+    <link name="front_caster_link">
+    <inertial>
+      <origin xyz="-1.06873e-18 -8.0155e-19 -0.000324613" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.000100521" ixy="-3.05322e-12" ixz="3.46924e-23"
+               iyy="0.000100521" iyz="2.02989e-21" izz="0.000101451"/>
+    </inertial>
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/front_caster_link.dae"/></geometry>
+      </visual>
+      <collision>
+        <geometry><sphere radius="0.05"/></geometry>
+      </collision>
+    </link>
+    <joint name="front_caster_joint" type="fixed">
+      <origin xyz="0.14 0 -0.025" rpy="0 0 0"/>
+      <parent link="chassis_link"/>
+      <child link="front_caster_link"/>
+    </joint>
+    <gazebo reference="front_caster_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+    </gazebo>
+
+    <link name="rear_caster_link">
+    <inertial>
+      <origin xyz="-1.06873e-18 -8.0155e-19 -0.000324613" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.000100521" ixy="-3.05322e-12" ixz="3.46924e-23"
+               iyy="0.000100521" iyz="2.02989e-21" izz="0.000101451"/>
+    </inertial>
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/rear_caster_link.dae"/></geometry>
+      </visual>
+      <collision>
+        <geometry><sphere radius="0.05"/></geometry>
+      </collision>
+    </link>
+    <joint name="rear_caster_joint" type="fixed">
+      <origin xyz="-0.14 0 -0.025" rpy="0 0 0"/>
+      <parent link="chassis_link"/>
+      <child link="rear_caster_link"/>
+    </joint>
+    <gazebo reference="rear_caster_link">
+      <mu1>0.0</mu1>
+      <mu2>0.0</mu2>
+      <kp>1000000.0</kp>
+      <kd>100.0</kd>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

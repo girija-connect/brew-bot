@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot name="cafe_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="common_properties.urdf.xacro"/>
+  <xacro:include filename="chassis.urdf.xacro"/>
+  <xacro:include filename="display.urdf.xacro"/>
+  <xacro:include filename="wheels.urdf.xacro"/>
+  <xacro:include filename="casters.urdf.xacro"/>
+  <xacro:include filename="sensors.urdf.xacro"/>
+  <xacro:include filename="controllers.urdf.xacro"/>
+
+  <link name="base_footprint"/>
+  <link name="base_link"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <xacro:chassis/>
+  <xacro:display/>
+  <xacro:wheels/>
+  <xacro:casters/>
+  <xacro:sensors/>
+  <xacro:controllers/>
+</robot>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="cafe_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- touch screen -->
+  <xacro:macro name="display">
+    <link name="display_link">
+    <inertial>
+      <origin xyz="-1.15504e-08 -1.24846e-07 1.0975e-09" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.00193691" ixy="1.92994e-10" ixz="-2.58673e-12"
+               iyy="0.000392955" iyz="-2.85927e-10" izz="0.00154713"/>
+    </inertial>
+      <!-- bezel -->
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/display_link.dae"/></geometry>
+      </visual>
+      
+      <visual>
+        <geometry><mesh filename="${mesh_dir}/display_screen.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="display_joint" type="fixed">
+      <origin xyz="${disp_x} 0 ${disp_z}" rpy="0 ${-disp_tilt} 0"/>
+      <parent link="tower_link"/>
+      <child link="display_link"/>
+    </joint>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="cafe_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Meshes are found through the ament index, so no IGN_GAZEBO_RESOURCE_PATH is needed.
+       Override with:  xacro cafe_bot.urdf.xacro mesh_dir:=/some/abs/path -->
+  <xacro:arg name="mesh_dir" default="file://$(find cafe_bot)/meshes"/>
+  <xacro:property name="mesh_dir" value="$(arg mesh_dir)"/>
+
+  <xacro:property name="wheel_radius" value="0.075"/>
+  <xacro:property name="wheel_width"  value="0.036"/>
+  <xacro:property name="wheel_sep"    value="0.34"/>   <!-- centre to centre; wheels sit inside the base -->
+
+  <!-- head / display geometry in the chassis frame (origin on the wheel axle) -->
+  <xacro:property name="head_z"       value="0.86"/>   <!-- bottom of the head -->
+  <xacro:property name="disp_x"       value="0.1956"/>   <!-- centre of the head's front face -->
+  <xacro:property name="disp_z"       value="${head_z + 0.1134}"/>
+  <xacro:property name="disp_tilt"    value="${20*pi/180}"/>
+
+  <!-- No <material> tags on purpose: every visual is a .dae that carries its own material. -->
+  <xacro:macro name="cyl_inertia" params="m r h">
+    <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+             iyy="${m*(3*r*r+h*h)/12}" iyz="0" izz="${m*r*r/2}"/>
+  </xacro:macro>
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertia ixx="${m*(y*y+z*z)/12}" ixy="0" ixz="0"
+             iyy="${m*(x*x+z*z)/12}" iyz="0" izz="${m*(x*x+y*y)/12}"/>
+  </xacro:macro>
+</robot>
