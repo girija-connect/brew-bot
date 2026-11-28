@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+<asset><contributor><authoring_tool>brew-bot</authoring_tool></contributor><unit name="meter" meter="1"/><up_axis>Z_UP</up_axis></asset>
+<library_effects><effect id="fx"><profile_COMMON><technique sid="common"><phong>
+<emission><color>0 0 0 1</color></emission><ambient><color>0.01960665 0.02451501 0.03968191 1</color></ambient><diffuse><color>0.01960665 0.02451501 0.03968191 1</color></diffuse><specular><color>0 0 0 1</color></specular><shininess><float>1</float></shininess>
+</phong></technique></profile_COMMON></effect></library_effects>
+<library_materials><material id="mat" name="mat"><instance_effect url="#fx"/></material></library_materials>
+<library_geometries><geometry id="geom" name="geom"><mesh><source id="verts"><float_array id="verts-array" count="12">0.0049 -0.168 -0.0824 0.0049 0.168 -0.0824 0.0049 0.168 0.0492 0.0049 -0.168 0.0492</float_array><technique_common><accessor source="#verts-array" count="4" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common></source><source id="norms"><float_array id="norms-array" count="12">1 0 0 1 0 0 1 0 0 1 0 0</float_array><technique_common><accessor source="#norms-array" count="4" stride="3"><param name="X" type="float"/><param name="Y" type="float"/><param name="Z" type="float"/></accessor></technique_common></source>
+<vertices id="vtx"><input semantic="POSITION" source="#verts"/></vertices>
+<triangles material="mat" count="2"><input semantic="VERTEX" source="#vtx" offset="0"/><input semantic="NORMAL" source="#norms" offset="1"/><p>0 0 1 1 2 2 0 0 2 2 3 3</p></triangles>
+</mesh></geometry></library_geometries>
+<library_visual_scenes><visual_scene id="scene"><node id="node" name="node"><instance_geometry url="#geom"><bind_material><technique_common>
+<instance_material symbol="mat" target="#mat"><bind_vertex_input semantic="UV0" input_semantic="TEXCOORD" input_set="0"/></instance_material>
+</technique_common></bind_material></instance_geometry></node></visual_scene></library_visual_scenes>
+<scene><instance_visual_scene url="#scene"/></scene>
+</COLLADA>
